@@ -1,0 +1,6 @@
+pyyaml>=6.0
+numpy>=1.24
+matplotlib>=3.7
+# transformers is OPTIONAL — only needed if you run a local model server as the
+# brain via the llm-http backend (see src/evoharness/agent.py LLMBackend).
+# transformers>=4.40

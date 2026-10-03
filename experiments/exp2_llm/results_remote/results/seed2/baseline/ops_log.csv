@@ -1,0 +1,13 @@
+generation,arm,seed,operator,count
+0,baseline,2,clone,2
+0,baseline,2,none,3
+1,baseline,2,clone,2
+1,baseline,2,none,3
+2,baseline,2,clone,2
+2,baseline,2,none,3
+3,baseline,2,clone,3
+3,baseline,2,none,2
+4,baseline,2,clone,3
+4,baseline,2,none,2
+5,baseline,2,clone,3
+5,baseline,2,none,2

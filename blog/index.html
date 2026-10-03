@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Did the Harness Come First? — Evolving AI Agents from the Body Out</title>
+<meta name="description" content="In biology, sensors and limbs evolved before brains. We ran the experiment for AI agents: fix the model, evolve the tool harness, and see what happens.">
+<style>
+  :root {
+    --paper: #faf7f1;
+    --ink: #1c1917;
+    --muted: #6b6259;
+    --accent: #b3541e;
+    --accent-soft: #f5e8db;
+    --line: #e5ddd0;
+    --card: #ffffff;
+    --good: #2f7d4f;
+    --bad: #b3352b;
+    --mixed: #a06a00;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-size: 18px;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  header.hero { padding: 72px 0 40px; border-bottom: 1px solid var(--line); }
+  .kicker {
+    font-size: 13px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 20px;
+  }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 6vw, 58px);
+    line-height: 1.12; font-weight: 700; letter-spacing: -0.01em;
+    margin-bottom: 18px;
+  }
+  .lede {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 21px; line-height: 1.6; color: #3d3831;
+  }
+  .byline { margin-top: 26px; font-size: 15px; color: var(--muted); }
+  .byline strong { color: var(--ink); }
+  main { padding: 48px 0 80px; }
+  h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px; line-height: 1.25; margin: 56px 0 18px;
+    padding-top: 8px;
+  }
+  h2 .num { color: var(--accent); font-size: 22px; vertical-align: 2px; margin-right: 10px; }
+  h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px; margin: 36px 0 12px;
+  }
+  p { margin-bottom: 20px; }
+  p + p { margin-top: 0; }
+  a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: #8a3f14; }
+  blockquote.pull {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 26px; line-height: 1.45; font-style: italic;
+    border-left: 3px solid var(--accent);
+    padding: 6px 0 6px 24px; margin: 36px 0; color: #3d3831;
+  }
+  figure.card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 12px; padding: 20px; margin: 36px 0;
+    box-shadow: 0 2px 12px rgba(28,25,23,0.05);
+  }
+  figure.card img { width: 100%; height: auto; border-radius: 6px; display: block; }
+  figcaption { font-size: 14.5px; color: var(--muted); margin-top: 14px; line-height: 1.6; }
+  figcaption strong { color: var(--ink); }
+  .verdicts { display: grid; gap: 14px; margin: 28px 0; }
+  .verdict {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .verdict .row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 6px; flex-wrap: wrap; }
+  .verdict .h { font-weight: 700; font-size: 17px; }
+  .badge {
+    font-size: 12.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 999px; white-space: nowrap;
+  }
+  .badge.no { background: #fbe9e7; color: var(--bad); }
+  .badge.weak { background: #fdf3e0; color: var(--mixed); }
+  .badge.mixed { background: #fdf3e0; color: var(--mixed); }
+  .verdict p { font-size: 16px; margin: 0; color: #3d3831; }
+  table.results {
+    width: 100%; border-collapse: collapse; margin: 28px 0;
+    font-size: 16px; background: var(--card);
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  }
+  table.results th, table.results td { padding: 12px 14px; text-align: left; }
+  table.results thead th {
+    background: #f3ede2; font-size: 13px; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--muted);
+  }
+  table.results tbody tr + tr td { border-top: 1px solid var(--line); }
+  table.results td.num { font-variant-numeric: tabular-nums; }
+  table.results tr.winner td { font-weight: 700; }
+  table.results tr.winner td:first-child::after { content: " ★"; color: var(--accent); }
+  .note {
+    background: var(--accent-soft); border-radius: 10px;
+    padding: 18px 22px; margin: 32px 0; font-size: 16px;
+  }
+  .note strong { display: block; margin-bottom: 4px; }
+  ul.tight { margin: 0 0 20px 22px; }
+  ul.tight li { margin-bottom: 10px; }
+  footer {
+    border-top: 1px solid var(--line); padding: 36px 0 64px;
+    font-size: 15px; color: var(--muted);
+  }
+  footer p { margin-bottom: 12px; }
+  .refs { font-size: 14.5px; color: var(--muted); }
+  .refs li { margin-bottom: 8px; }
+  .refs a { color: var(--muted); }
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    blockquote.pull { font-size: 22px; }
+    table.results { font-size: 14px; }
+    table.results th, table.results td { padding: 9px 8px; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Evolution &middot; AI Agents &middot; Experiments</div>
+    <h1>Did the Harness Come First?</h1>
+    <p class="lede">In biology, sensors and limbs evolved long before anything like a brain. We asked the AI analogue as an experiment: hold the model completely fixed, apply evolutionary pressure only to the agent's tooling — and see what the "brain" chooses to grow.</p>
+    <div class="byline"><strong>Solana Minter</strong> &middot; Purple Castle Ventures &middot; October 2026 &middot; 12 min read</div>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+<p>Here is a question from evolutionary biology that has been living rent-free in my head: <em>did the harness come first, or the brain?</em></p>
+
+<p>Primitive creatures had sensors, limbs, and organs long before they had anything you'd call a brain — and those bodies weren't dumb scaffolding waiting for a controller. They sensed, moved, and survived. The brain arrived later, as a thin layer on top of a body that already knew how to act.</p>
+
+<p>Now swap in the AI vocabulary. The <strong>brain</strong> is the language model. The <strong>harness</strong> is everything around it: the tools, their descriptions, the scaffolding — retries, validation, the prompts that tell the model how to call things. When an agent fails today, we usually reach for a bigger brain. But what if the right move — the evolutionarily <em>older</em> move — is to evolve the harness instead, and let the fixed brain decide, through selection pressure, which limbs to keep?</p>
+
+<p>That's what this project tested. Not as an essay. As an experiment, with pre-registered hypotheses, a fixed 1.5-billion-parameter "primitive brain," and real numbers.</p>
+
+<h2><span class="num">I.</span>What biology already knows</h2>
+
+<p>The biological answer to "harness or brain first?" is not close. The first nervous systems were not brains at all — they were diffuse <strong>nerve nets</strong>, like the ones still found in <em>Hydra</em> and jellyfish: body-wide sensing-and-acting substrates with dedicated circuits for feeding, contraction, and light, hundreds of millions of years before centralization, before cephalization, before anything like a head.</p>
+
+<p>And even at the peak of invertebrate intelligence, the brain stayed a minority partner. The octopus has roughly 500 million neurons — but only about 40 million sit in the central brain. <strong>Two-thirds live in the arms.</strong> Severed octopus arms keep reaching, grasping, and recoiling from harm with no brain involved at all. Evolution built its most autonomous, highest-bandwidth control systems in the periphery, not the head.</p>
+
+<blockquote class="pull">"Much of what looks like intelligence is actually the body doing the work."</blockquote>
+
+<p>This is the core claim of <strong>embodied cognition</strong> and <strong>morphological computation</strong> (Pfeifer &amp; Bongard, <em>How the Body Shapes the Way We Think</em>): push cognitive workload out of the central controller and into the body wherever the morphology allows it. Michael Levin's basal-cognition work pushes it further — goal-directed information processing in cells and tissues via bioelectric networks, <em>before neurons existed at all</em>. The infrastructure for goal-directed behavior came first. The centralized controller is a late, thin layer.</p>
+
+<p>So biology gives us a design pattern — call it the <strong>octopus architecture</strong>: a fixed, modest central controller made dramatically more capable by growing the periphery. That is the biological license for the experiment below.</p>
+
+<h2><span class="num">II.</span>The AI literature already votes harness</h2>
+
+<p>Read the self-improving-agents literature with one question in mind — <em>what actually gets evolved?</em> — and a striking regularity appears: almost never the weights. Almost always the harness.</p>
+
+<ul class="tight">
+  <li><strong>Voyager</strong> (2023) kept GPT-4 fixed and grew an ever-expanding <em>skill library</em> of executable code — 3.3× more unique items, 15× faster tech-tree progress, zero weight updates. Fix the brain, evolve the harness, capability compounds.</li>
+  <li><strong>The Darwin Gödel Machine</strong> (2025) is a coding agent that rewrites its own Python codebase — tools, workflow, prompting, explicitly <em>not</em> the weights — and climbed from 20% to 50% on SWE-bench. Its key ablation: an <em>archive</em> of past variants beats greedy hill-climbing.</li>
+  <li><strong>GEPA</strong> (2025) evolves prompts reflectively and beats reinforcement learning on weights by 6% while using 35× fewer rollouts. Evolving the harness in language-space is now competitive with updating weights, at a fraction of the cost.</li>
+  <li><strong>Promptbreeder, OPRO, DSPy, TextGrad, AFlow, Alita</strong> — prompts, workflows, agent code, tools, memories. The entire field is, read one way, a decades-long answer to "harness or brain?"</li>
+</ul>
+
+<p>Industry converged independently. Mitchell Hashimoto's formula — <strong>"Agent = Model + Harness"</strong> — with the maxim: <em>every time the agent makes a mistake, engineer it so it never makes that mistake again.</em> Anthropic frames the model as the engine and the harness as the car. The product, the reliability, the compounding advantage — they all live in the layer around the model.</p>
+
+<p>The literature told us <em>what</em> to evolve. It didn't tell us <em>how the brain should choose</em> — what selection mechanism lets a fixed model decide which tools to keep, prune, or reshape. That's the gap we ran at.</p>
+
+<h2><span class="num">III.</span>The experiment</h2>
+
+<p>We built a synthetic tool-use benchmark — 40 tasks across four families (arithmetic, string manipulation, unit conversion, list operations) — and a fixed <strong>"primitive brain"</strong>: Qwen2.5-1.5B-Instruct, a small open model, greedy decoding, never mutated. The parallel to biology is deliberate. Primitive creatures had tiny controllers; the question is what evolution can do with the body around one.</p>
+
+<p>Each agent individual carries a <strong>harness</strong>: a set of tools (some genuinely useful, some distractors like <code>approx_calc</code> and <code>noop_tool</code>), each tool's docstring, and scaffolding — retry logic, validation wrappers, and the global instruction preamble. We ran four evolutionary arms for 6 generations, population 6, across 2 seeds, selecting on a 12-task training split and scoring the final elites on a 28-task held-out test split:</p>
+
+<ul class="tight">
+  <li><strong>baseline</strong> — selection only, no mutation. The control.</li>
+  <li><strong>prompt</strong> — only the global instruction preamble evolves.</li>
+  <li><strong>random</strong> — full harness mutation (9 template operators: add/remove/split/merge tools, rewrite docstrings, add validation, enable retries…), random choice + tournament selection.</li>
+  <li><strong>directed</strong> — the <em>same fixed brain</em> reads failure traces and chooses which harness operator to apply. The brain as its own evolutionary pressure.</li>
+</ul>
+
+<p>Four hypotheses were pre-registered before the first run:</p>
+
+<div class="verdicts">
+  <div class="verdict">
+    <div class="row"><span class="h">H1 — Harness beats prompt.</span><span class="badge no">Not supported</span></div>
+    <p>With the brain fixed, evolving the harness (random arm) beats evolving the instruction preamble alone. <strong>Result:</strong> prompt-only won on both train (0.625 vs 0.583) and held-out test (0.375 vs 0.339).</p>
+  </div>
+  <div class="verdict">
+    <div class="row"><span class="h">H2 — Directed beats random.</span><span class="badge weak">Weakly supported</span></div>
+    <p>Brain-directed harness mutation beats random mutation + selection. <strong>Result:</strong> directed generalized best on test (0.393 vs 0.339) despite training worse than random (0.542 vs 0.583) — a curious signal worth a bigger run.</p>
+  </div>
+  <div class="verdict">
+    <div class="row"><span class="h">H3 — Docs beat structure.</span><span class="badge no">Not supported</span></div>
+    <p>Tool description/docstring mutations contribute more than structural add/remove. <strong>Result:</strong> structural operations dominated (13–16 uses vs 3–4 docstring edits). The showcased docstring evolution was literally a no-op rewrite.</p>
+  </div>
+  <div class="verdict">
+    <div class="row"><span class="h">H4 — Selection prunes.</span><span class="badge mixed">Mixed</span></div>
+    <p>Selection pressure removes unused/misleading tools. <strong>Result:</strong> 5 of 8 final elites pruned all three distractors; 3 (all from seed 1) kept every one of them.</p>
+  </div>
+</div>
+
+<h3>The numbers</h3>
+
+<p>Final elite fitness, mean ± std across 2 seeds. Bold marks the best arm per split.</p>
+
+<table class="results">
+  <thead><tr><th>Arm</th><th>Train fitness</th><th>Held-out test fitness</th></tr></thead>
+  <tbody>
+    <tr><td>baseline (control)</td><td class="num">0.500 ± 0.083</td><td class="num">0.357 ± 0.071</td></tr>
+    <tr class="winner"><td>prompt-only</td><td class="num">0.625 ± 0.125</td><td class="num">0.375 ± 0.018</td></tr>
+    <tr><td>random harness</td><td class="num">0.583 ± 0.083</td><td class="num">0.339 ± 0.018</td></tr>
+    <tr><td>brain-directed</td><td class="num">0.542 ± 0.042</td><td class="num">0.393 ± 0.036</td></tr>
+  </tbody>
+</table>
+
+<figure class="card">
+  <img src="figures/fitness_curves.png" alt="Train fitness over generations for all four arms, mean and std across seeds">
+  <figcaption><strong>Fitness over generations (train).</strong> All evolution arms lift off the baseline; prompt-only climbs furthest by generation 5. Bands are ±1 std across just 2 seeds — wide, and every between-arm difference sits inside noise.</figcaption>
+</figure>
+
+<figure class="card">
+  <img src="figures/test_generalization.png" alt="Bar charts of final elite fitness on train vs held-out test for all four arms">
+  <figcaption><strong>Train vs held-out test.</strong> Everything degrades out-of-sample, as expected. Note the directed arm: worst of the evolvers on train, best on test — the one arm whose mutations seemed to buy generalization rather than memorization.</figcaption>
+</figure>
+
+<h2><span class="num">IV.</span>What the brain chose to grow</h2>
+
+<p>The headline verdicts are humbling for the harness-first hypothesis — with a weak fixed brain, clearer instructions beat better tools. But the most interesting finding isn't a verdict. It's a <em>taste</em>.</p>
+
+<p>When the brain got to choose its own mutations, it didn't behave like random search. It overwhelmingly reached for two operators: <strong>split_tool</strong> (12 applications) and <strong>add_validation_wrapper</strong> (8). It decomposed tools into smaller pieces and bolted guardrails onto them — finer-grained, safer limbs — while random mutation preferred <em>merging</em> tools together. Given the same evolutionary pressure, the model and the coin flip designed in opposite directions.</p>
+
+<figure class="card">
+  <img src="figures/operator_ablation.png" alt="Operator usage counts for random vs brain-directed arms, and mutation class totals">
+  <figcaption><strong>What got mutated.</strong> Left: per-operator usage. Right: mutation classes — structural changes (add/remove/split/merge) dominate both arms; docstring edits are rare. The directed arm's skew toward splitting and validation is the experiment's most legible behavioral signal.</figcaption>
+</figure>
+
+<figure class="card">
+  <img src="figures/size_vs_fitness.png" alt="Harness size vs fitness scatter">
+  <figcaption><strong>Harness size vs fitness.</strong> Bigger harnesses did not reliably mean better agents — selection kept some elites lean (4 tools, distractors pruned) and others left cluttered, with similar scores. Complexity alone isn't the story; <em>which</em> limbs survive is.</figcaption>
+</figure>
+
+<div class="note">
+  <strong>The takeaway, stated carefully</strong>
+  With a very weak fixed brain, the highest-leverage intervention was clearer instructions, not better tools — H1 failed. But the brain-directed arm generalized best, and it showed a coherent design preference (decompose + guardrail). The harness-first bet likely needs either a brain strong enough to exploit tool structure, or finer-grained operators than the nine we gave it. That's the next experiment, not a refutation.
+</div>
+
+<h2><span class="num">V.</span>Caveats and next steps</h2>
+
+<p>Honesty first: n=2 seeds is thin, every between-arm gap sits inside the error bands, and absolute scores are low — a 1.5B model is a genuinely primitive brain, and the benchmark was hard for it. The docstring-evolution showcase was a no-op. Nothing here is statistically settled; it's a first probe, pre-registered and fully reproducible.</p>
+
+<p>What's next: a 7B-class brain to test whether harness evolution wakes up once the controller can exploit tool structure; more seeds; a richer, messier benchmark closer to real agentic work; and an archive-based selector (à la Darwin Gödel Machine) instead of plain tournament selection. The code, configs, raw CSVs, and figure scripts are being prepared for release alongside this post.</p>
+
+<p>Biology's answer stands: the harness came first, and most of the action stayed in the harness. Our small experiment suggests a refinement rather than a rebuttal — <em>which</em> layer matters most depends on how much brain you have. Give evolution a weak controller and it reaches for instructions. Give the brain a vote on its own body, and it starts splitting limbs and adding guardrails. The octopus would approve.</p>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><strong>References (selected).</strong> Full 39-citation literature review ships with the code.</p>
+    <ul class="refs tight">
+      <li>Galliot et al., "Cnidarians and the evolutionary origin of the nervous system" (2009) · Dupre &amp; Yuste, hydra whole-nervous-system imaging (2017)</li>
+      <li>"The autonomous arms of the octopus," <em>Nature / Lab Animal</em> (2014)</li>
+      <li>Pfeifer &amp; Bongard, <em>How the Body Shapes the Way We Think</em>, MIT Press (2007) · Levin, basal cognition program (2022–2023)</li>
+      <li>Voyager (Wang et al., 2023) · Darwin Gödel Machine (Zhang et al., 2025) · GEPA (Agrawal et al., 2025) · DSPy (Khattab et al., 2023)</li>
+      <li>Hashimoto, "Agent = Model + Harness" (2026) · Anthropic, "Building effective agents" (2024) · Karpathy, "Software Is Changing (Again)" (2025)</li>
+    </ul>
+    <p style="margin-top:24px;">© 2026 Solana Minter · Purple Castle Ventures · Los Angeles</p>
+  </div>
+</footer>
+</body>
+</html>

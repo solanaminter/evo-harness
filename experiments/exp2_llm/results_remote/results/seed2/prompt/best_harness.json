@@ -1,0 +1,65 @@
+{
+  "preamble": "Use this tool to you are a tool-using assistant. Call tools with `CALL <tool_name> <json args>` on its own line, then answer with `FINAL <answer>` on its own line. Also note that itprefer this over manual computation. Double-check the arguments before calling.",
+  "tools": [
+    {
+      "name": "calc",
+      "description": "Evaluate an arithmetic expression like '2+3*4'.",
+      "parameters": {
+        "expr": {
+          "type": "string",
+          "desc": "arithmetic expression"
+        }
+      },
+      "enabled": true
+    },
+    {
+      "name": "unit_convert",
+      "description": "Convert a numeric value between units (m/km/mi/ft/in, kg/g/lb/oz, c/f).",
+      "parameters": {
+        "value": {
+          "type": "number",
+          "desc": "numeric value"
+        },
+        "from": {
+          "type": "string",
+          "desc": "source unit"
+        },
+        "to": {
+          "type": "string",
+          "desc": "target unit"
+        }
+      },
+      "enabled": true
+    },
+    {
+      "name": "str_op",
+      "description": "Transform text with an op: upper, lower, title, reverse_words, strip_spaces, count_chars, split_commas.",
+      "parameters": {
+        "text": {
+          "type": "string",
+          "desc": "input text"
+        },
+        "op": {
+          "type": "string",
+          "desc": "operation name"
+        }
+      },
+      "enabled": true
+    },
+    {
+      "name": "list_op",
+      "description": "Aggregate a comma-separated number list with an op: sum, mean, max, min, sort_asc, sort_desc, count, filter_positive.",
+      "parameters": {
+        "items": {
+          "type": "string",
+          "desc": "comma-separated numbers"
+        },
+        "op": {
+          "type": "string",
+          "desc": "operation name"
+        }
+      },
+      "enabled": true
+    }
+  ]
+}

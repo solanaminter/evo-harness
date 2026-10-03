@@ -1,0 +1,19 @@
+{
+  "arm": "prompt",
+  "seed": 2,
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "generations": 6,
+  "population": 6,
+  "train_size": 12,
+  "test_size": 28,
+  "best_train_fitness": 0.75,
+  "best_test_fitness": 0.3929,
+  "best_tools": [
+    "calc",
+    "unit_convert",
+    "str_op",
+    "list_op"
+  ],
+  "n_enabled": 4,
+  "n_distractors": 0
+}

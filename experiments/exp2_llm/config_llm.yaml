@@ -1,0 +1,29 @@
+# exp2_llm — real-model experiment: a fixed Qwen2.5-1.5B-Instruct "primitive brain",
+# harness evolution on Modal T4. Pre-registered hypotheses H1..H4 (see README).
+# Run on Modal:  modal run experiments/exp2_llm/modal_app.py::run_exp2
+# (from repo root; results download via `modal volume get evo-harness-runs exp2_llm`)
+
+# Evolution
+population_size: 6
+generations: 6
+seeds: [1, 2]
+arms: ["baseline", "prompt", "random", "directed"]
+tournament_k: 2
+mutation_rate: 0.5
+
+# Benchmark split (stratified; 3 train + 7 test per family)
+train_size: 12
+test_size: 28
+total_tasks: 40
+
+# Model (fixed brain — never mutated)
+model_name: "Qwen/Qwen2.5-1.5B-Instruct"
+backend: "llm-local"
+llm_endpoint: ""
+max_turns: 3
+max_new_tokens: 160
+protocol_example: true
+
+# Paths (on the Modal container; mirrored to the runs volume)
+results_dir: "results"
+log_csv: "fitness_log.csv"

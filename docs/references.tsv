@@ -1,0 +1,40 @@
+title	authors	year	url
+Whole-brain calcium imaging of the hydra nerve net (New Scientist report)	Dupre & Yuste	2017	https://www.newscientist.com/article/2127625-entire-nervous-system-of-an-animal-recorded-for-the-first-time/
+Cnidarians and the evolutionary origin of the nervous system	Galliot et al.	2009	https://onlinelibrary.wiley.com/doi/10.1111/j.1440-169X.2009.01103.x
+The autonomous arms of the octopus	Lab Animal / Nature	2014	https://www.nature.com/articles/laban.615
+How the Body Shapes the Way We Think: A New View of Intelligence	Pfeifer & Bongard	2007	https://www.betterworldbooks.com/product/detail/how-the-body-shapes-the-way-we-think-a-new-view-of-intelligence-9780262537421
+A Robust Layered Control System for a Mobile Robot	Brooks, R. A.	1986	https://faculty.washington.edu/minster/bio_inspired_robotics/research_articles/brooks_robust_layered_control_robot_ieeetransrobotautomat1986.pdf
+The Extended Mind	Clark & Chalmers	1998	https://doi.org/10.1093/analys/58.1.7
+Technological Approach to Mind Everywhere	Levin, M.	2022	https://www.medscape.com/medline/abstract/35401131
+Bioelectric networks: the cognitive glue enabling evolutionary scaling from physiology to mind	Levin, M.	2023	https://doi.org/10.1007/s10071-023-01780-3
+Voyager: An Open-Ended Embodied Agent with Large Language Models	Wang et al.	2023	https://arxiv.org/abs/2305.16291
+CREATOR: Disentangling Abstract and Concrete Reasonings of Large Language Models through Tool Creation	Qian et al.	2023	https://arxiv.org/abs/2305.14318
+CRAFT: Customizing LLMs by Creating and Retrieving from Specialized Toolsets	Yuan et al.	2024	https://arxiv.org/abs/2309.17428
+LLM Agents Making Agent Tools (ToolMaker)	Wölflein et al.	2025	https://arxiv.org/abs/2502.11705
+ToolGen: Unified Tool Retrieval and Calling via Generation	Wang et al.	2025	https://arxiv.org/abs/2410.03439
+AvaTaR: Optimizing LLM Agents for Tool Usage via Contrastive Reasoning	Wu et al.	2024	https://arxiv.org/abs/2406.11200
+TPTU: Large Language Model-based AI Agents for Task Planning and Tool Usage	Ruan et al.	2023	https://arxiv.org/abs/2308.03427
+MetaAgent: Toward Self-Evolving Agent via Tool Meta-Learning	Qian & Liu	2025	https://arxiv.org/abs/2508.00271
+Darwin Gödel Machine: Open-Ended Evolution of Self-Improving Agents	Zhang et al.	2025	https://arxiv.org/abs/2505.22954
+Automated Design of Agentic Systems (ADAS)	Hu, Lu & Clune	2024	https://arxiv.org/abs/2408.08435
+Promptbreeder: Self-Referential Self-Improvement Via Prompt Evolution	Fernando et al.	2023	https://arxiv.org/abs/2309.16797
+Large Language Models as Optimizers (OPRO)	Yang et al.	2023	https://arxiv.org/abs/2309.03409
+DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines	Khattab et al.	2023	https://arxiv.org/abs/2310.03714
+TextGrad: Automatic "Differentiation" via Text	Yuksekgonul et al.	2024	https://arxiv.org/abs/2406.07496
+GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning	Agrawal et al.	2025	https://arxiv.org/abs/2507.19457
+AFlow: Automating Agentic Workflow Generation	Zhang et al.	2024	https://arxiv.org/abs/2410.10762
+EvoAgent: Towards Automatic Multi-Agent Generation via Evolutionary Algorithms	Yuan et al.	2024	https://arxiv.org/abs/2406.14228
+AgentSquare: Automatic LLM Agent Search in Modular Design Space	Shang et al.	2024	https://arxiv.org/abs/2410.06153
+Alita: Generalist Agent Enabling Scalable Agentic Reasoning with Minimal Predefinition and Maximal Self-Evolution	Qiu et al.	2025	https://arxiv.org/abs/2505.20286
+LLaMEA: A Large Language Model Evolutionary Algorithm for Automatically Generating Metaheuristics	van Stein & Bäck	2025	https://arxiv.org/abs/2405.20132
+Reflexion: Language Agents with Verbal Reinforcement Learning	Shinn et al.	2023	https://arxiv.org/abs/2303.11366
+Evolving Deeper LLM Thinking (Mind Evolution)	Lee et al.	2025	https://arxiv.org/abs/2501.09891
+My AI Adoption Journey (Agent = Model + Harness)	Hashimoto, M.	2026	https://mitchellh.com/writing/my-ai-adoption-journey
+Harness engineering: leveraging Codex in an agent-first world	OpenAI	2026	https://openai.com/index/harness-engineering/
+Harness engineering	Fowler & Boeckeler	2026	https://martinfowler.com/articles/harness-engineering.html
+Building effective agents	Schluntz & Zhang (Anthropic)	2024	https://www.anthropic.com/research/building-effective-agents
+Effective context engineering for AI agents	Anthropic	2025	https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+Software Is Changing (Again) (keynote)	Karpathy, A.	2025	https://www.ycombinator.com/library/MW-andrej-karpathy-software-is-changing-again
+Context engineering endorsement (X post)	Karpathy, A.	2025	https://x.com/karpathy/status/1937902205765607626
+The Second Half	Yao, S.	2025	https://ysymyth.github.io/The-Second-Half/
+Harness Design for Long-Running Application Development	Rajasekaran, P.	2026	https://www.anthropic.com/engineering/harnessdesignlongrunningapps

@@ -1,0 +1,7 @@
+generation,arm,seed,best,mean,best_tools,best_preamble_len
+0,directed,2,0.5833,0.5417,calc;unit_convert;str_op;list_op,146
+1,directed,2,0.5833,0.5278,calc;unit_convert;str_op;list_op,146
+2,directed,2,0.5833,0.5556,calc;unit_convert;str_op;list_op,146
+3,directed,2,0.5833,0.5278,calc;unit_convert;str_op;list_op,146
+4,directed,2,0.5833,0.5694,calc;unit_convert;str_op;list_op,146
+5,directed,2,0.5833,0.5694,calc;unit_convert;str_op;list_op,146

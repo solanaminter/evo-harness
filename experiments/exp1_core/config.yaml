@@ -1,0 +1,22 @@
+# exp1_core: H1 — with the brain fixed, does evolving the harness beat
+# evolving the prompt alone?
+#
+# Design:
+#   - brain: fixed (default regex-dummy backend; swap to llm-http for a real run)
+#   - arms: baseline (selection only), prompt (preamble mutation only),
+#           random (full harness operators, template-based)
+#   - 10 generations, pop 8, 3 seeds, train 24 / test 16 (stratified)
+population_size: 8
+generations: 10
+seeds: [1, 2, 3]
+arms: [baseline, prompt, random]
+tournament_k: 2
+mutation_rate: 0.5
+train_size: 24
+test_size: 16
+total_tasks: 40
+model_name: regex-dummy
+backend: regex
+max_turns: 6
+results_dir: results
+log_csv: fitness_log.csv
